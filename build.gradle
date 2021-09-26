@@ -4,6 +4,7 @@ buildscript {
         play_service_auth_version = '19.2.0'
         room_version = '2.3.0'
         hilt_version = '2.38.1'
+        retrofit_version = '2.9.0'
     }
     repositories {
         google()
