@@ -14,7 +14,7 @@ class HomeRepositoryImpl(
             val result = networkDataSource.getPizza()
             ServiceResult.Success(result)
         } catch (e: Exception) {
-            ServiceResult.Error("" + e.localizedMessage)
+            ServiceResult.Error(e)
         }
     }
 }
