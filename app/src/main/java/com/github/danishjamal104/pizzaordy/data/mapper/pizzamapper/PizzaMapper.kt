@@ -4,6 +4,10 @@ import com.github.danishjamal104.pizzaordy.data.mapper.BaseEntityMapper
 import com.github.danishjamal104.pizzaordy.data.model.Pizza
 import javax.inject.Inject
 
+/**
+ * Use to map pizza entity to domain
+ * In this use case, it is same
+ */
 class PizzaMapper
 @Inject
 constructor(): BaseEntityMapper<Pizza, Pizza>() {

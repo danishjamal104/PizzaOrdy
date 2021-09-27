@@ -21,7 +21,7 @@ constructor(
 ): ViewModel(), EventInterface<HomeEvent> {
 
     private val _homeState = MutableLiveData<HomeState<Pizza>>()
-    val authState: LiveData<HomeState<Pizza>>
+    val homeState: LiveData<HomeState<Pizza>>
         get() = _homeState
 
     override fun setEvent(event: HomeEvent) {

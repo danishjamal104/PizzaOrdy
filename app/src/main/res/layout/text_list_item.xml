@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="50dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="@dimen/dp_2"
+    app:cardBackgroundColor="@color/primary"
+    android:layout_marginEnd="8dp"
+    android:layout_marginTop="8dp">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/option_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hand Tossed"
+            android:layout_centerInParent="true"
+            android:layout_margin="8dp"
+            android:textColor="@color/black"
+            android:fontFamily="sans-serif"
+            android:textStyle="bold"/>
+
+    </RelativeLayout>
+
+</com.google.android.material.card.MaterialCardView>

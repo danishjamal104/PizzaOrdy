@@ -63,10 +63,12 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun providePizzaService(apiService: ApiService,
+    fun providePizzaService(
+        @ApplicationContext context: Context,
+        apiService: ApiService,
                             gson: Gson): PizzaService {
         return if(BuildConfig.DEBUG) {
-            MockPizzaService(gson)
+            MockPizzaService(context, gson)
         } else {
             PizzaServiceImpl(apiService)
         }

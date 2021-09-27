@@ -10,6 +10,12 @@ import java.io.IOException
 import java.net.HttpURLConnection
 import java.net.URL
 
+/**
+ * This class checks if the device has working internet connection or not
+ * by making a demo http request
+ * @author Danish Jamal [https://github.com/danishjamal104]
+ * @param [applicationContext] context required for communicating with system connectivity services
+ */
 open class InternetCheck(@ApplicationContext val applicationContext: Context) {
 
     private val TAG = "internetcheck";

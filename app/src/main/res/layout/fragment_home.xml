@@ -1,14 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/pizza_name_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Non-veg Pizza"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="@dimen/side_base_margin"
+        android:layout_marginTop="@dimen/side_base_margin"
+        android:textColor="@color/black"
+        android:textSize="32sp"/>
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/pizza_description_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pizza_name_tv"
+        android:layout_marginStart="@dimen/side_base_margin"
+        android:layout_marginTop="@dimen/side_base_margin"
+        android:layout_marginEnd="@dimen/side_base_margin"
+        android:textSize="16sp"
+        tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/side_base_margin"
+        android:layout_marginTop="16dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pizza_description_tv">
+
+        <TextView
+            android:id="@+id/veg_indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/veg" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:text="|" />
+
+        <TextView
+            android:id="@+id/non_veg_indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Non-Veg" />
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/cart_list"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        tools:layout_editor_absoluteX="32dp"
+        android:layout_marginTop="@dimen/side_base_margin"
+        android:layout_marginStart="@dimen/side_base_margin"
+        android:layout_marginEnd="@dimen/side_base_margin"/>
+
+    <ImageView
+        android:id="@+id/empty_cart_view"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:src="@drawable/ic_empty_cart_illustration"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.39" />
+
+    <TextView
+        android:id="@+id/total_amount_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/side_base_margin"
+        android:layout_marginBottom="@dimen/side_base_margin"
+        android:textSize="32sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="@string/rupee_symbol" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/add_to_cart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="@dimen/side_base_margin"
+        android:text="Add"
+        android:backgroundTint="@color/secondary"
+        android:textColor="@color/always_black"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

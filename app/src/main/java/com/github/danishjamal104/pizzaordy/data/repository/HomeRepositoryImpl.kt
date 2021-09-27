@@ -5,6 +5,11 @@ import com.github.danishjamal104.pizzaordy.data.model.Pizza
 import com.github.danishjamal104.pizzaordy.data.remote.NetworkDataSource
 import java.lang.Exception
 
+/**
+ * Implementation of the [HomeRepository]
+ * @author Danish Jamal [https://github.com/danishjamal104]
+ * @param [networkDataSource] takes network source for getting data from remote
+ */
 class HomeRepositoryImpl(
     private val networkDataSource: NetworkDataSource
 ): HomeRepository {

@@ -4,6 +4,6 @@ data class Pizza(
     val name: String,
     val isVeg: Boolean,
     val description: String,
-    val defaultCrust: Crust,
+    val defaultCrust: Int,
     val crusts: List<Crust>
 )
