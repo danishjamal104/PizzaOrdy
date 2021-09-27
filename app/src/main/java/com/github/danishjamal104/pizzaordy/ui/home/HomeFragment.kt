@@ -48,6 +48,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), AddToCartListener, OnQuan
             if (this::pizza.isInitialized) {
                 dialog.show()
                 dialog.setCrusts(pizza.crusts, pizza.defaultCrust)
+                return@setOnClickListener
             }
             shortToast(getString(R.string.fetching_pizza_info))
         }
@@ -55,9 +56,11 @@ class HomeFragment : Fragment(R.layout.fragment_home), AddToCartListener, OnQuan
         binding.removeFromCart.setOnClickListener {
             if (this::pizza.isInitialized) {
                 removePizzaDialog.show()
+                return@setOnClickListener
             }
             shortToast(getString(R.string.fetching_pizza_info))
         }
+        onQuantityChange(0)
 
         observeHomeState()
         setEvent(HomeEvent.GetPizza)
@@ -66,9 +69,15 @@ class HomeFragment : Fragment(R.layout.fragment_home), AddToCartListener, OnQuan
     private fun observeHomeState() {
         viewModel.homeState.observe(viewLifecycleOwner) {
             when(it) {
-                is HomeState.DataLoaded -> setPizzaUI(it.pizza)
-                is HomeState.Error -> longToast(it.friendlyErrorMessage)
-                HomeState.Loading -> shortToast("Getting pizza info")
+                is HomeState.DataLoaded -> {
+                    binding.progress.hide()
+                    setPizzaUI(it.pizza)
+                }
+                is HomeState.Error ->  {
+                    binding.progress.hide()
+                    longToast(it.friendlyErrorMessage)
+                }
+                HomeState.Loading -> binding.progress.show()
             }
         }
     }

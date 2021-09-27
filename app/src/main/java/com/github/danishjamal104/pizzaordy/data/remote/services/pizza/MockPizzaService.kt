@@ -46,7 +46,7 @@ class MockPizzaService(
         1,
             mutableListOf(handTossedCrust, cheeseBurstCrust)
         )
-        delay(1000)
+        delay(3000)
         return pizza
     }
 }
