@@ -55,6 +55,10 @@ class HomeFragment : Fragment(R.layout.fragment_home), AddToCartListener, OnQuan
 
         binding.removeFromCart.setOnClickListener {
             if (this::pizza.isInitialized) {
+                if(removePizzaDialog.getItemCount() == 0) {
+                    shortToast(getString(R.string.the_cart_is_empty))
+                    return@setOnClickListener
+                }
                 removePizzaDialog.show()
                 return@setOnClickListener
             }

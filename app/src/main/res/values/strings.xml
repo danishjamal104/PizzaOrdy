@@ -17,4 +17,5 @@
     <string name="remove">Remove</string>
     <string name="close">Close</string>
     <string name="quantity">Quantity:</string>
+    <string name="the_cart_is_empty">The cart is empty</string>
 </resources>

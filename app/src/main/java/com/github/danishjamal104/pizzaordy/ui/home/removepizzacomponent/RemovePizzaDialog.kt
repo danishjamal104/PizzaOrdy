@@ -57,6 +57,7 @@ class RemovePizzaDialog(val context: Context) {
                 R.color.secondary
             )
         )
+        dialog.window?.setStatusColor(ContextCompat.getColor(context, R.color.primaryDark))
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
         dialog.setOnShowListener { revealShow(true) }
@@ -118,6 +119,10 @@ class RemovePizzaDialog(val context: Context) {
 
     fun addOnQuantityChangeListener(onQuantityChangeListener: OnQuantityChangeListener) {
         cartItemAdapter.onQuantityChangeListener = onQuantityChangeListener
+    }
+
+    fun getItemCount(): Int {
+        return cartItemAdapter.getDataList.size
     }
 
 }
