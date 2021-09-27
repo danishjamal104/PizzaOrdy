@@ -63,49 +63,60 @@
 
     </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/cart_list"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        tools:layout_editor_absoluteX="32dp"
-        android:layout_marginTop="@dimen/side_base_margin"
-        android:layout_marginStart="@dimen/side_base_margin"
-        android:layout_marginEnd="@dimen/side_base_margin"/>
-
-    <ImageView
-        android:id="@+id/empty_cart_view"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
-        android:src="@drawable/ic_empty_cart_illustration"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.39" />
-
-    <TextView
-        android:id="@+id/total_amount_tv"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/side_base_margin"
-        android:layout_marginBottom="@dimen/side_base_margin"
-        android:textSize="32sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:text="@string/rupee_symbol" />
+        android:orientation="vertical">
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/add_to_cart"
+        <TextView
+            android:id="@+id/total_amount_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/side_base_margin"
+            android:textSize="32sp"
+            tools:text="@string/rupee_symbol" />
+
+        <TextView
+            android:id="@+id/total_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/quantity"
+            android:layout_marginStart="@dimen/side_base_margin"
+            android:layout_marginBottom="@dimen/side_base_margin"
+            android:textSize="16sp"/>
+    </LinearLayout>
+
+
+
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="@dimen/side_base_margin"
-        android:text="Add"
-        android:backgroundTint="@color/secondary"
-        android:textColor="@color/always_black"/>
+        android:orientation="vertical">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/add_to_cart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/add"
+            android:backgroundTint="@color/secondary"
+            android:textColor="@color/always_black"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/remove_from_cart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/remove"
+            android:backgroundTint="@color/secondary"
+            android:textColor="@color/always_black"/>
+
+    </LinearLayout>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

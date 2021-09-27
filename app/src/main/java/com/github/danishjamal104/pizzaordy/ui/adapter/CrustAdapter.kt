@@ -63,7 +63,6 @@ class CrustAdapter(val context: Context): BaseAdapter<Crust, TextListItemBinding
      */
     private fun selectUIUpdate(binding: TextListItemBinding) {
         binding.root.setCardBackgroundColor(ContextCompat.getColor(context, R.color.secondary))
-        //binding.optionText.setTextColor(ContextCompat.getColor(context, R.color.secondary))
     }
 
     /**
@@ -71,6 +70,5 @@ class CrustAdapter(val context: Context): BaseAdapter<Crust, TextListItemBinding
      */
     private fun unselectUIUpdate(binding: TextListItemBinding) {
         binding.root.setCardBackgroundColor(ContextCompat.getColor(context, R.color.primaryDark))
-        //binding.optionText.setTextColor(ContextCompat.getColor(context, R.color.black))
     }
 }

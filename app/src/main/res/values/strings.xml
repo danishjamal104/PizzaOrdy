@@ -10,4 +10,11 @@
     <string name="veg">Veg</string>
     <string name="decrement_icon">--</string>
     <string name="increment_icon">+</string>
+    <string name="pull_down_to_get_started">Pull down to get started</string>
+    <string name="get_your_favourite_pizza">Delicious pizza at your doorstep</string>
+    <string name="get_started">Order Now</string>
+    <string name="add">Add</string>
+    <string name="remove">Remove</string>
+    <string name="close">Close</string>
+    <string name="quantity">Quantity:</string>
 </resources>

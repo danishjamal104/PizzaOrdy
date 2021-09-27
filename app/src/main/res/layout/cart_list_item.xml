@@ -8,10 +8,10 @@
 
     <ImageView
         android:id="@+id/pizza_image"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
         android:layout_centerVertical="true"
-        android:src="@drawable/ic_pizza_svgrepo_com" />
+        android:src="@drawable/pizza" />
 
     <LinearLayout
         android:id="@+id/title_container"

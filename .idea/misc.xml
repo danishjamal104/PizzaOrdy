@@ -6,10 +6,12 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.17421602787456447" />
         <entry key="app/src/main/res/layout/cart_list_item.xml" value="0.27589743589743587" />
         <entry key="app/src/main/res/layout/customize_pizza_layout.xml" value="0.28020833333333334" />
+        <entry key="app/src/main/res/layout/delete_pizza_layout.xml" value="0.27589743589743587" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.28020833333333334" />
-        <entry key="app/src/main/res/layout/fragment_intro.xml" value="0.26614583333333336" />
+        <entry key="app/src/main/res/layout/fragment_intro.xml" value="0.165" />
         <entry key="app/src/main/res/layout/select_crust_layout.xml" value="0.27589743589743587" />
         <entry key="app/src/main/res/layout/text_list_item.xml" value="1.6682023045194077" />
+        <entry key="app/src/main/res/xml/fragment_intro_scene.xml" value="0.27589743589743587" />
       </map>
     </option>
   </component>

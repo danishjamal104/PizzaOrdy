@@ -2,6 +2,7 @@ package com.github.danishjamal104.pizzaordy.ui.home.selectpizzacomponent
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
+import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Context
 import android.content.DialogInterface
@@ -18,12 +19,13 @@ import com.github.danishjamal104.pizzaordy.ui.adapter.CrustAdapter
 import com.github.danishjamal104.pizzaordy.ui.adapter.CrustSizeAdapter
 import com.github.danishjamal104.pizzaordy.ui.adapter.OnItemClickListener
 import com.github.danishjamal104.pizzaordy.utils.setStatusColor
-import java.lang.Math.hypot
+import kotlin.math.hypot
 
 class CustomizePizzaDialog(val context: Context) {
 
     private var dialog: Dialog = Dialog(context)
 
+    @SuppressLint("InflateParams")
     private var _binding: CustomizePizzaLayoutBinding = CustomizePizzaLayoutBinding.bind(
         LayoutInflater.from(context).inflate(R.layout.customize_pizza_layout, null, true)
     )
@@ -93,9 +95,9 @@ class CustomizePizzaDialog(val context: Context) {
         )
 
         binding.addToCart.setOnClickListener {
-            addToCartListener?.let {
-                it.addToCart(crustAdapter.getCurrentSelected(), sizeAdapter.getCurrentSelected())
-            }
+            addToCartListener?.addToCart(
+                crustAdapter.getCurrentSelected(), sizeAdapter.getCurrentSelected())
+            revealShow(b = false, exit = true)
         }
     }
 
@@ -106,11 +108,12 @@ class CustomizePizzaDialog(val context: Context) {
         val endRadius = hypot(w.toDouble(), h.toDouble()).toInt()
         val cx = w/2
         val cy = h/2
+        val duration = 600L
         if (b) {
             val revealAnimator =
                 ViewAnimationUtils.createCircularReveal(view, cx, cy, 0f, endRadius.toFloat())
             view.visibility = View.VISIBLE
-            revealAnimator.duration = 700
+            revealAnimator.duration = duration
             revealAnimator.start()
         } else {
             val anim =
@@ -125,7 +128,7 @@ class CustomizePizzaDialog(val context: Context) {
                     }
                 }
             })
-            anim.duration = 700
+            anim.duration = duration
             anim.start()
         }
     }
@@ -165,15 +168,13 @@ class CustomizePizzaDialog(val context: Context) {
         updatePriceUI()
     }
 
+    @SuppressLint("SetTextI18n")
     private fun updatePriceUI() {
-        binding.price.text = "${context.getString(R.string.rupee_symbol)} ${currentPrice}"
+        binding.price.text = "${context.getString(R.string.rupee_symbol)} $currentPrice"
     }
 
     fun show() {
         dialog.show()
     }
 
-    fun exit(exitFunction: () -> Unit) {
-        revealShow(b = false, exit = true, exitFunction = exitFunction)
-    }
 }

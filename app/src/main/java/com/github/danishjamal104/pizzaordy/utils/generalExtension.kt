@@ -1,6 +1,7 @@
 package com.github.danishjamal104.pizzaordy.utils
 
 import android.content.Context
+import com.github.danishjamal104.pizzaordy.R
 import com.google.gson.stream.JsonReader
 import java.io.IOException
 import java.io.InputStream
@@ -22,4 +23,8 @@ fun Context.getJsonFromAssets(fileName: String): String {
     }
 
     return jsonString
+}
+
+fun Double.inRupeesFormat(context: Context): String {
+    return "${context.getString(R.string.rupee_symbol)} $this"
 }

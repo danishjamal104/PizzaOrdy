@@ -7,17 +7,16 @@ import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.danishjamal104.pizzaordy.R
-import com.github.danishjamal104.pizzaordy.data.model.CartItem
 import com.github.danishjamal104.pizzaordy.data.model.Crust
 import com.github.danishjamal104.pizzaordy.data.model.CrustSize
 import com.github.danishjamal104.pizzaordy.data.model.Pizza
 import com.github.danishjamal104.pizzaordy.databinding.FragmentHomeBinding
-import com.github.danishjamal104.pizzaordy.ui.adapter.CartItemAdapter
 import com.github.danishjamal104.pizzaordy.ui.adapter.OnQuantityChangeListener
+import com.github.danishjamal104.pizzaordy.ui.home.removepizzacomponent.RemovePizzaDialog
 import com.github.danishjamal104.pizzaordy.ui.home.selectpizzacomponent.AddToCartListener
 import com.github.danishjamal104.pizzaordy.ui.home.selectpizzacomponent.CustomizePizzaDialog
+import com.github.danishjamal104.pizzaordy.utils.inRupeesFormat
 import com.github.danishjamal104.pizzaordy.utils.longToast
 import com.github.danishjamal104.pizzaordy.utils.shortToast
 import dagger.hilt.android.AndroidEntryPoint
@@ -31,10 +30,9 @@ class HomeFragment : Fragment(R.layout.fragment_home), AddToCartListener, OnQuan
     private val viewModel: HomeViewModel by viewModels()
 
     private lateinit var dialog: CustomizePizzaDialog
+    private lateinit var removePizzaDialog: RemovePizzaDialog
 
     private lateinit var pizza: Pizza
-
-    private lateinit var cartItemAdapter: CartItemAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -42,6 +40,9 @@ class HomeFragment : Fragment(R.layout.fragment_home), AddToCartListener, OnQuan
 
         dialog = CustomizePizzaDialog(requireContext())
         dialog.addToCartListener = this
+
+        removePizzaDialog = RemovePizzaDialog(requireContext())
+        removePizzaDialog.addOnQuantityChangeListener(this)
 
         binding.addToCart.setOnClickListener {
             if (this::pizza.isInitialized) {
@@ -51,19 +52,15 @@ class HomeFragment : Fragment(R.layout.fragment_home), AddToCartListener, OnQuan
             shortToast(getString(R.string.fetching_pizza_info))
         }
 
-        setUpCartList()
+        binding.removeFromCart.setOnClickListener {
+            if (this::pizza.isInitialized) {
+                removePizzaDialog.show()
+            }
+            shortToast(getString(R.string.fetching_pizza_info))
+        }
+
         observeHomeState()
         setEvent(HomeEvent.GetPizza)
-    }
-
-    private fun setUpCartList() {
-        cartItemAdapter = CartItemAdapter(requireContext())
-        binding.cartList.layoutManager = LinearLayoutManager(requireContext())
-        binding.cartList.setHasFixedSize(false)
-        binding.cartList.adapter = cartItemAdapter
-
-        cartItemAdapter.onQuantityChangeListener = this
-        cartItemAdapter.bindEmptyView(binding.emptyCartView)
     }
 
     private fun observeHomeState() {
@@ -81,7 +78,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), AddToCartListener, OnQuan
         this.pizza = pizza
         binding.pizzaNameTv.text = pizza.name
         binding.pizzaDescriptionTv.text = pizza.description
-        binding.totalAmountTv.text = "${getString(R.string.rupee_symbol)} 0.0"
+        binding.totalAmountTv.text = 0.0.inRupeesFormat(requireContext())
         refreshVegNonVegIndicator(pizza.isVeg)
     }
 
@@ -113,11 +110,14 @@ class HomeFragment : Fragment(R.layout.fragment_home), AddToCartListener, OnQuan
     }
 
     override fun addToCart(crust: Crust, crustSize: CrustSize) {
-        val cartItem = CartItem(1, crust, crustSize)
-        cartItemAdapter.addCustom(cartItem)
+        removePizzaDialog.addToCart(crust, crustSize)
     }
 
     override fun onPriceChange(newTotalPrice: Double) {
-        binding.totalAmountTv.text = "${getString(R.string.rupee_symbol)} ${cartItemAdapter.getTotalPrice()}"
+        binding.totalAmountTv.text = newTotalPrice.inRupeesFormat(requireContext())
+    }
+
+    override fun onQuantityChange(newQuantity: Int) {
+        binding.totalItem.text = "${requireContext().getString(R.string.quantity)} $newQuantity"
     }
 }
